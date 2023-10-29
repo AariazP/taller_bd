@@ -364,3 +364,159 @@ VALUES
 ('Internal Audit',  36);
 
 
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 9 LIMIT 1) WHERE employee_id = 9;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 39 LIMIT 1) WHERE employee_id = 39;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 17 LIMIT 1) WHERE employee_id = 17;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 18 LIMIT 1) WHERE employee_id = 18;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 40 LIMIT 1) WHERE employee_id = 40;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 43 LIMIT 1) WHERE employee_id = 43;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 47 LIMIT 1) WHERE employee_id = 47;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 3 LIMIT 1) WHERE employee_id = 3;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 26 LIMIT 1) WHERE employee_id = 26;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 21 LIMIT 1) WHERE employee_id = 21;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 26 LIMIT 1) WHERE employee_id = 26;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 15 LIMIT 1) WHERE employee_id = 15;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 47 LIMIT 1) WHERE employee_id = 47;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 39 LIMIT 1) WHERE employee_id = 39;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 5 LIMIT 1) WHERE employee_id = 5;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 8 LIMIT 1) WHERE employee_id = 8;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 23 LIMIT 1) WHERE employee_id = 23;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 43 LIMIT 1) WHERE employee_id = 43;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 44 LIMIT 1) WHERE employee_id = 44;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 40 LIMIT 1) WHERE employee_id = 40;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 20 LIMIT 1) WHERE employee_id = 20;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 27 LIMIT 1) WHERE employee_id = 27;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 26 LIMIT 1) WHERE employee_id = 26;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 49 LIMIT 1) WHERE employee_id = 49;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 18 LIMIT 1) WHERE employee_id = 18;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 40 LIMIT 1) WHERE employee_id = 40;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 44 LIMIT 1) WHERE employee_id = 44;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 2 LIMIT 1) WHERE employee_id = 2;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 25 LIMIT 1) WHERE employee_id = 25;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 21 LIMIT 1) WHERE employee_id = 21;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 1 LIMIT 1) WHERE employee_id = 1;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 28 LIMIT 1) WHERE employee_id = 28;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 28 LIMIT 1) WHERE employee_id = 28;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 27 LIMIT 1) WHERE employee_id = 27;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 36 LIMIT 1) WHERE employee_id = 36;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 27 LIMIT 1) WHERE employee_id = 27;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 43 LIMIT 1) WHERE employee_id = 43;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 15 LIMIT 1) WHERE employee_id = 15;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 27 LIMIT 1) WHERE employee_id = 27;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 15 LIMIT 1) WHERE employee_id = 15;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 36 LIMIT 1) WHERE employee_id = 36;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 43 LIMIT 1) WHERE employee_id = 43;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 45 LIMIT 1) WHERE employee_id = 45;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 15 LIMIT 1) WHERE employee_id = 15;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 37 LIMIT 1) WHERE employee_id = 37;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 45 LIMIT 1) WHERE employee_id = 45;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 37 LIMIT 1) WHERE employee_id = 37;
+UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 36 LIMIT 1) WHERE employee_id = 36;
+
+
+INSERT INTO LOCATIONS (street_address, postal_code, city, state_province, country_id, departament_id, employee_id, job_id)
+VALUES
+('123 Main St', '12345', 'Anytown', 'ABC State', 1, 1, 1, 1),
+('456 Elm St', '67890', 'Otherville', 'XYZ State', 2, 2, 2, 2),
+('789 Oak St', '13579', 'Another City', 'LMN State', 3, 3, 3, 3),
+('987 Wall St', '54321', 'New City', 'QRS State', 4, 4, 4, 4),
+('654 Birch St', '98765', 'Distant Town', 'UVW State', 5, 5, 5, 5),
+('321 Pine St', '24680', 'Smallville', 'IJK State', 6, 6, 6, 6),
+('222 Cedar St', '13579', 'Villageland', 'DEF State', 7, 7, 7, 7),
+('111 Elm St', '98765', 'Mountaintop', 'OPQ State', 8, 8, 8, 8),
+('777 Maple St', '12345', 'Seashore', 'TUV State', 9, 9, 9, 9),
+('888 Oak St', '67890', 'Riverside', 'XYZ State', 10, 10, 10, 10),
+('999 Birch St', '13579', 'Hillside', 'ABC State', 11, 11, 11, 11),
+('555 Wall St', '54321', 'Valley', 'LMN State', 12, 12, 12, 12),
+('444 Main St', '98765', 'Lakeside', 'PQR State', 13, 13, 13, 13),
+('333 Pine St', '24680', 'Countryside', 'GHI State', 14, 14, 14, 14),
+('666 Elm St', '13579', 'Metropolis', 'STU State', 15, 15, 15, 15),
+('777 Wall St', '98765', 'Paradise City', 'JKL State', 16, 16, 16, 16),
+('888 Birch St', '12345', 'Dreamland', 'VWX State', 17, 17, 17, 17),
+('999 Main St', '67890', 'Wonderville', 'DEF State', 18, 18, 18, 18),
+('111 Elm St', '13579', 'Midtown', 'OPQ State', 19, 19, 19, 19),
+('222 Cedar St', '54321', 'Uptown', 'IJK State', 20, 20, 20, 20),
+('333 Wall St', '24680', 'Downtown', 'TUV State', 21, 21, 21, 21),
+('444 Maple St', '13579', 'Suburbia', 'ABC State', 22, 22, 22, 22),
+('555 Elm St', '98765', 'Ruraltown', 'LMN State', 23, 23, 23, 23),
+('666 Pine St', '12345', 'Township', 'PQR State', 24, 24, 24, 24),
+('777 Wall St', '67890', 'Oasis', 'GHI State', 25, 25, 25, 25),
+('888 Oak St', '13579', 'Wonderland', 'STU State', 26, 26, 26, 26),
+('999 Wall St', '54321', 'Rainbowville', 'JKL State', 27, 27, 27, 27),
+('111 Cedar St', '24680', 'Fantasyland', 'VWX State', 28, 28, 28, 28),
+('222 Maple St', '13579', 'Pleasantville', 'DEF State', 29, 29, 29, 29),
+('333 Elm St', '98765', 'Heaven City', 'OPQ State', 30, 30, 30, 30),
+('444 Wall St', '12345', 'Oblivion', 'IJK State', 31, 31, 31, 31),
+('555 Oak St', '67890', 'Mirage', 'TUV State', 32, 32, 32, 32),
+('666 Cedar St', '13579', 'Fairyland', 'ABC State', 33, 33, 33, 33),
+('777 Pine St', '98765', 'Eden', 'LMN State', 34, 34, 34, 34),
+('888 Wall St', '12345', 'Neverland', 'PQR State', 35, 35, 35, 35),
+('999 Maple St', '67890', 'Elysium', 'GHI State', 36, 36, 36, 36),
+('111 Elm St', '13579', 'Limbo', 'STU State', 37, 37, 37, 37),
+('222 Birch St', '54321', 'Utopia', 'JKL State', 38, 38, 38, 38),
+('333 Wall St', '24680', 'Shangri-La', 'VWX State', 39, 39, 39, 39),
+('444 Cedar St', '13579', 'Paradiso', 'DEF State', 40, 40, 40, 40),
+('555 Elm St', '98765', 'Arcadia', 'OPQ State', 41, 41, 41, 41),
+('666 Pine St', '12345', 'Shambhala', 'IJK State', 42, 42, 42, 42),
+('777 Wall St', '67890', 'Atlantis', 'TUV State', 43, 43, 43, 43),
+('888 Oak St', '13579', 'Asgard', 'ABC State', 44, 44, 44, 44),
+('999 Birch St', '54321', 'El Dorado', 'LMN State', 45, 45, 45, 45),
+('111 Main St', '24680', 'Avalon', 'PQR State', 46, 46, 46, 46),
+('222 Elm St', '13579', 'Camelot', 'GHI State', 47, 47, 47, 47),
+('333 Pine St', '98765', 'Shangri-La', 'STU State', 48, 48, 48, 48),
+('444 Wall St', '12345', 'Olympus', 'JKL State', 49, 49, 49, 49),
+('555 Maple St', '67890', 'Valhalla', 'VWX State', 50, 50, 50, 50);
+
+
+INSERT INTO JOB_HISTORY (employee_id, date_start, end_date, job_id, departament_id)
+VALUES
+(1, '2021-01-01', '2022-01-01', 1, 1),
+(2, '2019-04-15', '2020-03-20', 2, 2),
+(3, '2020-10-10', '2021-09-15', 3, 3),
+(4, '2018-07-22', '2019-06-30', 4, 4),
+(5, '2019-12-05', '2020-11-11', 5, 5),
+(6, '2020-02-28', '2021-02-28', 6, 6),
+(7, '2021-06-15', '2022-06-15', 7, 7),
+(8, '2020-09-30', '2021-09-30', 8, 8),
+(9, '2019-11-11', '2020-11-11', 9, 9),
+(10, '2018-05-20', '2019-05-20', 10, 10),
+(11, '2021-03-03', '2022-03-03', 11, 11),
+(12, '2019-08-08', '2020-08-08', 12, 12),
+(13, '2020-01-01', '2021-01-01', 13, 13),
+(14, '2018-10-20', '2019-10-20', 14, 14),
+(15, '2019-12-25', '2020-12-25', 15, 15),
+(16, '2020-06-06', '2021-06-06', 16, 16),
+(17, '2021-01-01', '2022-01-01', 17, 17),
+(18, '2019-04-15', '2020-03-20', 18, 18),
+(19, '2020-10-10', '2021-09-15', 19, 19),
+(20, '2018-07-22', '2019-06-30', 20, 20),
+(21, '2019-12-05', '2020-11-11', 21, 21),
+(22, '2020-02-28', '2021-02-28', 22, 22),
+(23, '2021-06-15', '2022-06-15', 23, 23),
+(24, '2020-09-30', '2021-09-30', 24, 24),
+(25, '2019-11-11', '2020-11-11', 25, 25),
+(26, '2018-05-20', '2019-05-20', 26, 26),
+(27, '2021-03-03', '2022-03-03', 27, 27),
+(28, '2019-08-08', '2020-08-08', 28, 28),
+(29, '2020-01-01', '2021-01-01', 29, 29),
+(30, '2018-10-20', '2019-10-20', 30, 30),
+(31, '2019-12-25', '2020-12-25', 31, 31),
+(32, '2020-06-06', '2021-06-06', 32, 32),
+(33, '2021-01-01', '2022-01-01', 33, 33),
+(34, '2019-04-15', '2020-03-20', 34, 34),
+(35, '2020-10-10', '2021-09-15', 35, 35),
+(36, '2018-07-22', '2019-06-30', 36, 36),
+(37, '2019-12-05', '2020-11-11', 37, 37),
+(38, '2020-02-28', '2021-02-28', 38, 38),
+(39, '2021-06-15', '2022-06-15', 39, 39),
+(40, '2020-09-30', '2021-09-30', 40, 40),
+(41, '2019-11-11', '2020-11-11', 41, 41),
+(42, '2018-05-20', '2019-05-20', 42, 42),
+(43, '2021-03-03', '2022-03-03', 43, 43),
+(44, '2019-08-08', '2020-08-08', 44, 44),
+(45, '2020-01-01', '2021-01-01', 45, 45),
+(46, '2018-10-20', '2019-10-20', 46, 46),
+(47, '2019-12-25', '2020-12-25', 47, 47),
+(48, '2020-06-06', '2021-06-06', 48, 48),
+(49, '2021-01-01', '2022-01-01', 49, 49),
+(50, '2019-04-15', '2020-03-20', 50, 50);
