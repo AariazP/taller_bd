@@ -1,0 +1,1 @@
+SELECT DISTINCT(c.country_name) AS paises  FROM LOCATIONS l JOIN COUNTRIES c ON l.country_id=c.country_id;

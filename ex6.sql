@@ -1,0 +1,1 @@
+SELECT DISTINCT(job_id) AS jobs_code FROM EMPLOYEES;

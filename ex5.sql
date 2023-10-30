@@ -1,0 +1,1 @@
+SELECT first_name FROM EMPLOYEES WHERE departament_id=50;

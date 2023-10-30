@@ -1,0 +1,1 @@
+SELECT max(max_salary) FROM JOBS;
