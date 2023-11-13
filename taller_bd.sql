@@ -24,10 +24,7 @@ CREATE TABLE LOCATIONS(
     postal_code VARCHAR(12),
     city VARCHAR(30),
     state_province VARCHAR(25),
-    country_id INT,
-    departament_id INT,
-    employee_id INT,  
-    job_id INT
+    country_id INT
 
 );
 
@@ -61,7 +58,8 @@ CREATE TABLE EMPLOYEES(
     salary INT,
     commission_pct INT,
     manager_id INT,
-    departament_id INT
+    departament_id INT,
+    location_id INT
 
 );
 
@@ -77,9 +75,6 @@ CREATE TABLE JOB_HISTORY(
 
 ALTER TABLE COUNTRIES ADD CONSTRAINT FOREIGN KEY (region_id) REFERENCES REGIONS(region_id);
 ALTER TABLE LOCATIONS ADD CONSTRAINT FOREIGN KEY (country_id) REFERENCES COUNTRIES(country_id);
-ALTER TABLE LOCATIONS ADD CONSTRAINT FOREIGN KEY (departament_id) REFERENCES DEPARTMENTS(departament_id);
-ALTER TABLE LOCATIONS ADD CONSTRAINT FOREIGN KEY (employee_id) REFERENCES EMPLOYEES(employee_id);
-ALTER TABLE LOCATIONS ADD CONSTRAINT FOREIGN KEY (job_id) REFERENCES JOBS(job_id);
 ALTER TABLE DEPARTMENTS ADD CONSTRAINT FOREIGN KEY (manager_id) REFERENCES EMPLOYEES(employee_id);
 ALTER TABLE DEPARTMENTS ADD CONSTRAINT FOREIGN KEY (location_id) REFERENCES LOCATIONS(location_id);
 ALTER TABLE EMPLOYEES ADD CONSTRAINT FOREIGN KEY (job_id) REFERENCES JOBS(job_id);
@@ -205,9 +200,9 @@ VALUES
 (58, 'British Indian Ocean', FLOOR(1+RAND()*50));
 
 INSERT INTO JOBS (job_title, min_salary, max_salary) VALUES
-    ('Software Engineer', 60000, 100000),
+    ('Accountant', 60000, 100000),
     ('Sales Manager', 50000, 90000),
-    ('Data Analyst', 55000, 95000),
+    ('Programmer', 55000, 95000),
     ('Marketing Coordinator', 45000, 85000),
     ('HR Specialist', 48000, 88000),
     ('Financial Analyst', 60000, 100000),
@@ -256,58 +251,59 @@ INSERT INTO JOBS (job_title, min_salary, max_salary) VALUES
     ('Plumber', 45000, 85000),
     ('Veterinarian', 70000, 120000);
 
-INSERT INTO EMPLOYEES (employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id)
+INSERT INTO EMPLOYEES (employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, 
+            location_id)
 VALUES
-(1, 'John', 'Doe', 'john@example.com', '123-456-7890', '2023-01-15', 1, 50000, 10, NULL),
-(2, 'Jane', 'Smith', 'jane@example.com', '987-654-3210', '2022-05-20', 2, 60000, 15, 1),
-(3, 'Michael', 'Johnson', 'michael@example.com', '111-222-3333', '2023-03-10', 3, 55000, 12, 1),
-(4, 'William', 'Adams', 'william@example.com', '333-444-5555', '2022-08-12', 1, 52000, 8, 2),
-(5, 'Olivia', 'Garcia', 'olivia@example.com', '777-888-9999', '2023-02-05', 3, 58000, 10, 2),
-(6, 'James', 'Martinez', 'james@example.com', '222-333-4444', '2022-07-19', 2, 59000, 12, 1),
-(7, 'Sophie', 'Wilson', 'sophie@example.com', '555-666-7777', '2022-09-30', 4, 65000, 18, 3),
-(8, 'Liam', 'Lopez', 'liam@example.com', '999-888-7777', '2023-01-25', 1, 51000, 9, 3),
-(9, 'Ava', 'Gonzalez', 'ava@example.com', '777-222-3333', '2022-12-07', 2, 62000, 14, 2),
-(10, 'Noah', 'Perez', 'noah@example.com', '111-555-9999', '2023-03-28', 3, 54000, 11, 1),
-(11, 'Isabella', 'Torres', 'isabella@example.com', '777-333-1111', '2022-06-15', 4, 63000, 20, 1),
-(12, 'Ethan', 'Ortiz', 'ethan@example.com', '999-444-8888', '2022-10-10', 1, 50000, 10, NULL),
-(13, 'Mia', 'Flores', 'mia@example.com', '111-666-4444', '2023-02-12', 2, 59000, 12, 2),
-(14, 'Lucas', 'Rivera', 'lucas@example.com', '777-777-7777', '2022-08-19', 3, 57000, 13, 2),
-(15, 'Amelia', 'Long', 'amelia@example.com', '555-999-6666', '2023-01-04', 4, 64000, 16, 3),
-(16, 'Oliver', 'Kim', 'oliver@example.com', '222-888-4444', '2022-11-29', 1, 53000, 8, 3),
-(17, 'Charlotte', 'Nguyen', 'charlotte@example.com', '333-777-9999', '2022-07-05', 2, 61000, 15, 1),
-(18, 'Elijah', 'Chen', 'elijah@example.com', '111-444-7777', '2023-03-16', 3, 56000, 11, 1),
-(19, 'Harper', 'Singh', 'harper@example.com', '777-555-2222', '2022-06-25', 4, 66000, 18, 2),
-(20, 'Aiden', 'Wang', 'aiden@example.com', '888-444-2222', '2023-02-22', 1, 52000, 9, 2),
-(21, 'Evelyn', 'Gupta', 'evelyn@example.com', '333-666-9999', '2022-09-18', 2, 60000, 14, 1),
-(22, 'Alexander', 'Martínez', 'alexander@example.com', '444-777-8888', '2023-01-30', 3, 55000, 10, 1),
-(23, 'Luna', 'Liu', 'luna@example.com', '666-333-9999', '2022-12-22', 4, 67000, 16, 3),
-(24, 'Mateo', 'Brown', 'mateo@example.com', '111-888-3333', '2022-10-02', 1, 51000, 8, 3),
-(25, 'Layla', 'Ali', 'layla@example.com', '888-333-7777', '2023-03-04', 2, 58000, 12, 2),
-(26, 'Carter', 'Khan', 'carter@example.com', '666-222-5555', '2022-08-14', 3, 59000, 13, 2),
-(27, 'Aria', 'García', 'aria@example.com', '777-444-2222', '2023-01-07', 4, 65000, 17, 1),
-(28, 'Mason', 'Rodríguez', 'mason@example.com', '333-666-4444', '2022-11-02', 1, 52000, 9, 1),
-(29, 'Scarlett', 'Hernández', 'scarlett@example.com', '111-999-5555', '2022-07-12', 2, 61000, 15, 2),
-(30, 'Zoe', 'Li', 'zoe@example.com', '777-999-1111', '2023-02-14', 3, 56000, 11, 3),
-(31, 'Riley', 'Wu', 'riley@example.com', '333-555-7777', '2023-04-05', 4, 66000, 19, 2),
-(32, 'Hudson', 'Park', 'hudson@example.com', '555-111-8888', '2022-09-26', 1, 53000, 8, NULL),
-(33, 'Penelope', 'Kim', 'penelope@example.com', '777-333-5555', '2023-01-19', 2, 59000, 12, 1),
-(34, 'Bentley', 'Chung', 'bentley@example.com', '444-888-2222', '2022-08-22', 3, 60000, 14, 1),
-(35, 'Nova', 'Gao', 'nova@example.com', '999-333-6666', '2023-02-18', 4, 54000, 11, 2),
-(36, 'Kai', 'Kravitz', 'kai@example.com', '666-888-5555', '2022-06-25', 1, 64000, 18, 3),
-(37, 'Emery', 'Santos', 'emery@example.com', '222-999-4444', '2023-01-05', 2, 53000, 9, 3),
-(38, 'Ivy', 'Ramos', 'ivy@example.com', '777-111-3333', '2022-11-18', 3, 61000, 15, 1),
-(39, 'Xander', 'Chavez', 'xander@example.com', '555-222-7777', '2023-03-20', 4, 55000, 10, 1),
-(40, 'Cali', 'Yu', 'cali@example.com', '111-666-8888', '2022-07-08', 1, 65000, 20, 2),
-(41, 'Dallas', 'Zhang', 'dallas@example.com', '888-111-7777', '2023-02-24', 2, 54000, 8, 2),
-(42, 'Phoenix', 'Wang', 'phoenix@example.com', '333-666-9999', '2022-10-28', 3, 62000, 14, 3),
-(43, 'Jasper', 'Liu', 'jasper@example.com', '777-888-1111', '2023-01-14', 4, 56000, 11, 3),
-(44, 'Sienna', 'Gupta', 'sienna@example.com', '444-999-2222', '2022-12-11', 1, 66000, 18, 1),
-(45, 'Lennon', 'Das', 'lennon@example.com', '999-444-8888', '2023-03-30', 2, 55000, 10, 1),
-(46, 'Skyler', 'Patel', 'skyler@example.com', '333-555-9999', '2022-08-20', 3, 63000, 15, 2),
-(47, 'Aubrey', 'Wong', 'aubrey@example.com', '777-222-6666', '2023-01-09', 4, 57000, 12, 2),
-(48, 'River', 'Chen', 'river@example.com', '111-777-3333', '2022-11-14', 1, 67000, 17, 3),
-(49, 'Eden', 'Singh', 'eden@example.com', '888-333-6666', '2022-07-23', 2, 56000, 9, 3),
-(50, 'Sawyer', 'Das', 'sawyer@example.com', '444-666-9999', '2023-02-26', 3, 64000, 16, 1);
+(1, 'John', 'Doe', 'john@example.com', '123-456-7890', '2023-01-15', 1, 50000, 10, 1,2),
+(2, 'Jane', 'Smith', 'jane@example.com', '987-654-3210', '2022-05-20', 2, 60000, 15, 1,2),
+(3, 'Michael', 'Johnson', 'michael@example.com', '111-222-3333', '2023-03-10', 3, 55000, 12, 1,2),
+(4, 'William', 'Adams', 'william@example.com', '333-444-5555', '2022-08-12', 1, 52000, 8, 2,2),
+(5, 'Olivia', 'Garcia', 'olivia@example.com', '777-888-9999', '2023-02-05', 3, 58000, 10, 2,2),
+(6, 'James', 'Martinez', 'james@example.com', '222-333-4444', '2022-07-19', 2, 59000, 12, 1,2),
+(7, 'Sophie', 'Wilson', 'sophie@example.com', '555-666-7777', '2022-09-30', 4, 65000, 18, 3,2),
+(8, 'Liam', 'Lopez', 'liam@example.com', '999-888-7777', '2023-01-25', 1, 51000, 9, 3,2),
+(9, 'Ava', 'Gonzalez', 'ava@example.com', '777-222-3333', '2022-12-07', 2, 62000, 14, 2,2),
+(10, 'Noah', 'Perez', 'noah@example.com', '111-555-9999', '2023-03-28', 3, 54000, 11, 1,2),
+(11, 'Isabella', 'Torres', 'isabella@example.com', '777-333-1111', '2022-06-15', 4, 63000, 20, 1,2),
+(12, 'Ethan', 'Ortiz', 'ethan@example.com', '999-444-8888', '2022-10-10', 1, 50000, 10, NULL,2),
+(13, 'Mia', 'Flores', 'mia@example.com', '111-666-4444', '2023-02-12', 2, 59000, 12, 2,2),
+(14, 'Lucas', 'Rivera', 'lucas@example.com', '777-777-7777', '2022-08-19', 3, 57000, 13, 2,2),
+(15, 'Amelia', 'Long', 'amelia@example.com', '555-999-6666', '2023-01-04', 4, 64000, 16, 3,2),
+(16, 'Oliver', 'Kim', 'oliver@example.com', '222-888-4444', '2022-11-29', 1, 53000, 8, 3,2),
+(17, 'Charlotte', 'Nguyen', 'charlotte@example.com', '333-777-9999', '2022-07-05', 2, 61000, 15, 1,2),
+(18, 'Elijah', 'Chen', 'elijah@example.com', '111-444-7777', '2023-03-16', 3, 56000, 11, 1,2),
+(19, 'Harper', 'Singh', 'harper@example.com', '777-555-2222', '2022-06-25', 4, 66000, 18, 2,2),
+(20, 'Aiden', 'Wang', 'aiden@example.com', '888-444-2222', '2023-02-22', 1, 52000, 9, 2,2),
+(21, 'Evelyn', 'Gupta', 'evelyn@example.com', '333-666-9999', '2022-09-18', 2, 60000, 14, 1,2),
+(22, 'Alexander', 'Martínez', 'alexander@example.com', '444-777-8888', '2023-01-30', 3, 55000, 10, 1,2),
+(23, 'Luna', 'Liu', 'luna@example.com', '666-333-9999', '2022-12-22', 4, 67000, 16, 3,2),
+(24, 'Mateo', 'Brown', 'mateo@example.com', '111-888-3333', '2022-10-02', 1, 51000, 8, 3,2),
+(25, 'Layla', 'Ali', 'layla@example.com', '888-333-7777', '2023-03-04', 2, 58000, 12, 2,2),
+(26, 'Carter', 'Khan', 'carter@example.com', '666-222-5555', '2022-08-14', 3, 59000, 13, 2,2),
+(27, 'Aria', 'García', 'aria@example.com', '777-444-2222', '2023-01-07', 4, 65000, 17, 1,2),
+(28, 'Mason', 'Rodríguez', 'mason@example.com', '333-666-4444', '2022-11-02', 1, 52000, 9, 1,2),
+(29, 'Scarlett', 'Hernández', 'scarlett@example.com', '111-999-5555', '2022-07-12', 2, 61000, 15, 2,2),
+(30, 'Zoe', 'Li', 'zoe@example.com', '777-999-1111', '2023-02-14', 3, 56000, 11, 3,2),
+(31, 'Riley', 'Wu', 'riley@example.com', '333-555-7777', '2023-04-05', 4, 66000, 19, 2,2),
+(32, 'Hudson', 'Park', 'hudson@example.com', '555-111-8888', '2022-09-26', 1, 53000, 8, NULL,2),
+(33, 'Penelope', 'Kim', 'penelope@example.com', '777-333-5555', '2023-01-19', 2, 59000, 12, 1,2),
+(34, 'Bentley', 'Chung', 'bentley@example.com', '444-888-2222', '2022-08-22', 3, 60000, 14, 1,2),
+(35, 'Nova', 'Gao', 'nova@example.com', '999-333-6666', '2023-02-18', 4, 54000, 11, 2,2),
+(36, 'Kai', 'Kravitz', 'kai@example.com', '666-888-5555', '2022-06-25', 1, 64000, 18, 3,2),
+(37, 'Emery', 'Santos', 'emery@example.com', '222-999-4444', '2023-01-05', 2, 53000, 9, 3,2),
+(38, 'Ivy', 'Ramos', 'ivy@example.com', '777-111-3333', '2022-11-18', 3, 61000, 15, 1,2),
+(39, 'Xander', 'Chavez', 'xander@example.com', '555-222-7777', '2023-03-20', 4, 55000, 10, 1,2),
+(40, 'Cali', 'Yu', 'cali@example.com', '111-666-8888', '2022-07-08', 1, 65000, 20, 2,2),
+(41, 'Dallas', 'Zhang', 'dallas@example.com', '888-111-7777', '2023-02-24', 2, 54000, 8, 2,2),
+(42, 'Phoenix', 'Wang', 'phoenix@example.com', '333-666-9999', '2022-10-28', 3, 62000, 14, 3,2),
+(43, 'Jasper', 'Liu', 'jasper@example.com', '777-888-1111', '2023-01-14', 4, 56000, 11, 3,2),
+(44, 'Sienna', 'Gupta', 'sienna@example.com', '444-999-2222', '2022-12-11', 1, 66000, 18, 1,2),
+(45, 'Lennon', 'Das', 'lennon@example.com', '999-444-8888', '2023-03-30', 2, 55000, 10, 1,2),
+(46, 'Skyler', 'Patel', 'skyler@example.com', '333-555-9999', '2022-08-20', 3, 63000, 15, 2,2),
+(47, 'Aubrey', 'Wong', 'aubrey@example.com', '777-222-6666', '2023-01-09', 4, 57000, 12, 2,2),
+(48, 'River', 'Chen', 'river@example.com', '111-777-3333', '2022-11-14', 1, 67000, 17, 3,2),
+(49, 'Eden', 'Singh', 'eden@example.com', '888-333-6666', '2022-07-23', 2, 56000, 9, 3,2),
+(50, 'Sawyer', 'Das', 'sawyer@example.com', '444-666-9999', '2023-02-26', 3, 64000, 16, 1,2);
 
 
 INSERT INTO DEPARTMENTS (departament_name, manager_id)
@@ -414,58 +410,58 @@ UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WH
 UPDATE EMPLOYEES SET departament_id = (SELECT departament_id FROM DEPARTMENTS WHERE manager_id = 36 LIMIT 1) WHERE employee_id = 36;
 
 
-INSERT INTO LOCATIONS (street_address, postal_code, city, state_province, country_id, departament_id, employee_id, job_id)
+INSERT INTO LOCATIONS (street_address, postal_code, city, state_province, country_id)
 VALUES
-('123 Main St', '12345', 'Anytown', 'ABC State',FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50)),
-('456 Elm St', '67890', 'Otherville', 'XYZ State',FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50)),
-('789 Oak St', '13579', 'Another City', 'LMN State',FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50)),
-('987 Wall St', '54321', 'New City', 'QRS State',FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50)),
-('654 Birch St', '98765', 'Distant Town', 'UVW State',FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50)),
-('321 Pine St', '24680', 'Smallville', 'IJK State',FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50)),
-('222 Cedar St', '13579', 'Villageland', 'DEF State',FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50)),
-('111 Elm St', '98765', 'Mountaintop', 'OPQ State',FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50)),
-('777 Maple St', '12345', 'Seashore', 'TUV State',FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50),FLOOR(1+RAND()*50)),
-('888 Oak St', '67890', 'Riverside', 'XYZ State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('999 Birch St', '13579', 'Hillside', 'ABC State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50),FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('555 Wall St', '54321', 'Valley', 'LMN State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('444 Main St', '98765', 'Lakeside', 'PQR State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('333 Pine St', '24680', 'Countryside', 'GHI State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('666 Elm St', '13579', 'Metropolis', 'STU State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('777 Wall St', '98765', 'Paradise City', 'JKL State', FLOOR(1+RAND()*50),FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('888 Birch St', '12345', 'Dreamland', 'VWX State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('999 Main St', '67890', 'Wonderville', 'DEF State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('111 Elm St', '13579', 'Midtown', 'OPQ State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('222 Cedar St', '54321', 'Uptown', 'IJK State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('333 Wall St', '24680', 'Downtown', 'TUV State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('444 Maple St', '13579', 'Suburbia', 'ABC State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('555 Elm St', '98765', 'Ruraltown', 'LMN State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('666 Pine St', '12345', 'Township', 'PQR State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('777 Wall St', '67890', 'Oasis', 'GHI State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('888 Oak St', '13579', 'Wonderland', 'STU State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('999 Wall St', '54321', 'Rainbowville', 'JKL State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('111 Cedar St', '24680', 'Fantasyland', 'VWX State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('222 Maple St', '13579', 'Pleasantville', 'DEF State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('333 Elm St', '98765', 'Heaven City', 'OPQ State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('444 Wall St', '12345', 'Oblivion', 'IJK State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('555 Oak St', '67890', 'Mirage', 'TUV State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('666 Cedar St', '13579', 'Fairyland', 'ABC State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('777 Pine St', '98765', 'Eden', 'LMN State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('888 Wall St', '12345', 'Neverland', 'PQR State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('999 Maple St', '67890', 'Elysium', 'GHI State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('111 Elm St', '13579', 'Limbo', 'STU State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('222 Birch St', '54321', 'Utopia', 'JKL State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('333 Wall St', '24680', 'Shangri-La', 'VWX State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('444 Cedar St', '13579', 'Paradiso', 'DEF State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('555 Elm St', '98765', 'Arcadia', 'OPQ State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('666 Pine St', '12345', 'Shambhala', 'IJK State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('777 Wall St', '67890', 'Atlantis', 'TUV State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('888 Oak St', '13579', 'Asgard', 'ABC State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50),FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('999 Birch St', '54321', 'El Dorado', 'LMN State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('111 Main St', '24680', 'Avalon', 'PQR State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('222 Elm St', '13579', 'Camelot', 'GHI State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('333 Pine St', '98765', 'Shangri-La', 'STU State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('444 Wall St', '12345', 'Olympus', 'JKL State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
-('555 Maple St', '67890', 'Valhalla', 'VWX State', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50), FLOOR(1+RAND()*50));
+('123 Main St', '12345', 'Anytown', 'ABC State', FLOOR(1+RAND()*50)),
+('456 Elm St', '67890', 'Otherville', 'XYZ State', FLOOR(1+RAND()*50)),
+('789 Oak St', '13579', 'Another City', 'LMN State', FLOOR(1+RAND()*50)),
+('987 Wall St', '54321', 'New City', 'QRS State', FLOOR(1+RAND()*50)),
+('654 Birch St', '98765', 'Distant Town', 'UVW State', FLOOR(1+RAND()*50)),
+('321 Pine St', '24680', 'Smallville', 'IJK State', FLOOR(1+RAND()*50)),
+('222 Cedar St', '13579', 'Villageland', 'DEF State', FLOOR(1+RAND()*50)),
+('111 Elm St', '98765', 'Mountaintop', 'OPQ State', FLOOR(1+RAND()*50)),
+('777 Maple St', '12345', 'Seashore', 'TUV State', FLOOR(1+RAND()*50)),
+('888 Oak St', '67890', 'Riverside', 'XYZ State', FLOOR(1+RAND()*50)),
+('999 Birch St', '13579', 'Hillside', 'ABC State', FLOOR(1+RAND()*50)),
+('555 Wall St', '54321', 'Valley', 'LMN State', FLOOR(1+RAND()*50)),
+('444 Main St', '98765', 'Lakeside', 'PQR State', FLOOR(1+RAND()*50)),
+('333 Pine St', '24680', 'Countryside', 'GHI State', FLOOR(1+RAND()*50)),
+('666 Elm St', '13579', 'Metropolis', 'STU State', FLOOR(1+RAND()*50)),
+('777 Wall St', '98765', 'Paradise City', 'JKL State', FLOOR(1+RAND()*50)),
+('888 Birch St', '12345', 'Dreamland', 'VWX State', FLOOR(1+RAND()*50)),
+('999 Main St', '67890', 'Wonderville', 'DEF State', FLOOR(1+RAND()*50)),
+('111 Elm St', '13579', 'Midtown', 'OPQ State', FLOOR(1+RAND()*50)),
+('222 Cedar St', '54321', 'Uptown', 'IJK State', FLOOR(1+RAND()*50)),
+('333 Wall St', '24680', 'Downtown', 'TUV State', FLOOR(1+RAND()*50)),
+('444 Maple St', '13579', 'Suburbia', 'ABC State', FLOOR(1+RAND()*50)),
+('555 Elm St', '98765', 'Ruraltown', 'LMN State', FLOOR(1+RAND()*50)),
+('666 Pine St', '12345', 'Township', 'PQR State', FLOOR(1+RAND()*50)),
+('777 Wall St', '67890', 'Oasis', 'GHI State', FLOOR(1+RAND()*50)),
+('888 Oak St', '13579', 'Wonderland', 'STU State', FLOOR(1+RAND()*50)),
+('999 Wall St', '54321', 'Rainbowville', 'JKL State', FLOOR(1+RAND()*50)),
+('111 Cedar St', '24680', 'Fantasyland', 'VWX State', FLOOR(1+RAND()*50)),
+('222 Maple St', '13579', 'Pleasantville', 'DEF State', FLOOR(1+RAND()*50)),
+('333 Elm St', '98765', 'Heaven City', 'OPQ State', FLOOR(1+RAND()*50)),
+('444 Wall St', '12345', 'Oblivion', 'IJK State', FLOOR(1+RAND()*50)),
+('555 Oak St', '67890', 'Mirage', 'TUV State', FLOOR(1+RAND()*50)),
+('666 Cedar St', '13579', 'Fairyland', 'ABC State', FLOOR(1+RAND()*50)),
+('777 Pine St', '98765', 'Eden', 'LMN State', FLOOR(1+RAND()*50)),
+('888 Wall St', '12345', 'Neverland', 'PQR State', FLOOR(1+RAND()*50)),
+('999 Maple St', '67890', 'Elysium', 'GHI State', FLOOR(1+RAND()*50)),
+('111 Elm St', '13579', 'Limbo', 'STU State', FLOOR(1+RAND()*50)),
+('222 Birch St', '54321', 'Utopia', 'JKL State', FLOOR(1+RAND()*50)),
+('333 Wall St', '24680', 'Shangri-La', 'VWX State', FLOOR(1+RAND()*50)),
+('444 Cedar St', '13579', 'Paradiso', 'DEF State', FLOOR(1+RAND()*50)),
+('555 Elm St', '98765', 'Arcadia', 'OPQ State', FLOOR(1+RAND()*50)),
+('666 Pine St', '12345', 'Shambhala', 'IJK State', FLOOR(1+RAND()*50)),
+('777 Wall St', '67890', 'Atlantis', 'TUV State', FLOOR(1+RAND()*50)),
+('888 Oak St', '13579', 'Asgard', 'ABC State', FLOOR(1+RAND()*50)),
+('999 Birch St', '54321', 'El Dorado', 'LMN State', FLOOR(1+RAND()*50)),
+('111 Main St', '24680', 'Avalon', 'PQR State', FLOOR(1+RAND()*50)),
+('222 Elm St', '13579', 'Camelot', 'GHI State', FLOOR(1+RAND()*50)),
+('333 Pine St', '98765', 'Shangri-La', 'STU State', FLOOR(1+RAND()*50)),
+('444 Wall St', '12345', 'Olympus', 'JKL State', FLOOR(1+RAND()*50)),
+('555 Maple St', '67890', 'Valhalla', 'VWX State', FLOOR(1+RAND()*50));
 
 
 INSERT INTO JOB_HISTORY (employee_id, date_start, end_date, job_id, departament_id)
@@ -520,3 +516,57 @@ VALUES
 (48, '2020-06-06', '2021-06-06', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
 (49, '2021-01-01', '2022-01-01', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50)),
 (50, '2019-04-15', '2020-03-20', FLOOR(1+RAND()*50), FLOOR(1+RAND()*50));
+
+
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =1;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =2;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =3;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =4;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =5;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =6;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =7;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =8;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =9;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =10;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =11;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =12;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =13;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =14;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =15;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =16;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =17;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =18;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =19;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =20;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =21;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =22;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =23;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =24;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =25;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =26;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =27;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =28;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =29;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =30;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =31;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =32;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =33;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =34;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =35;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =36;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =37;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =38;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =39;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =40;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =41;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =42;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =43;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =44;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =45;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =46;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =47;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =48;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =49;
+UPDATE DEPARTMENTS SET location_id= FLOOR(1+RAND()*50) WHERE departament_id =50;
+
+
